@@ -1,0 +1,12 @@
+# Apenas desenvolvimento local. Para amigos em redes externas, configure IP público/DNS/TLS e firewall.
+services:
+  livekit:
+    image: livekit/livekit-server:latest
+    command: ["--config", "/etc/livekit.yaml"]
+    volumes:
+      - ./livekit.yaml.example:/etc/livekit.yaml:ro
+    ports:
+      - "7880:7880/tcp"
+      - "7881:7881/tcp"
+      - "50000-50020:50000-50020/udp"
+    restart: unless-stopped
